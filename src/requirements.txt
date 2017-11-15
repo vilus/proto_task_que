@@ -1,0 +1,4 @@
+Django==1.11
+requests
+gunicorn==19.7.1
+psycopg2==2.7

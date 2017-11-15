@@ -1,0 +1,30 @@
+version: '2'
+
+services:
+  proto_que:
+    build: './src/.'
+    image: 'vshevchenko/backend.proto_que'
+    depends_on:
+      - postgresql
+    env_file: './src/.env'
+    environment:
+      - DEBUG=true
+      - MAX_RUNNING=2
+      - DJANGO_SETTINGS_MODULE=project.settings.docker
+    ports:
+      - 8080:8080
+    command: 'gunicorn project.wsgi:application -w 2 -b :8080 --error-logfile=- --log-level=debug'
+    logging:
+      driver: 'journald'
+    restart: always
+
+  postgresql:
+    image: 'postgres:9.6'
+    env_file: './src/.env'
+    ports:
+      - 5432:5432
+    volumes:
+      - 'pg_data8:/var/lib/postgresql/data/'
+
+volumes:
+  pg_data8:
