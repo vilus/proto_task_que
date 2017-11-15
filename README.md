@@ -3,9 +3,9 @@
 Реализованное API:
 ```bash
 # добавить задание в очередь
-/api/v0/tasks/add/  -> {"task_id": <task_id>}
+POST /api/v0/tasks/add/  -> {"task_id": <task_id>}
 # информация о задании
-/api/v0/tasks/<task_id>/ -> {"status": "...", "start_time": "...", "create_time": "...", "time_to_execute": "..."}
+POST /api/v0/tasks/<task_id>/ -> {"status": "...", "start_time": "...", "create_time": "...", "time_to_execute": "..."}
 ```
 #
 install:
